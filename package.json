@@ -1,0 +1,32 @@
+{
+  "name": "airloy",
+  "version": "0.1.0",
+  "description": "Web client-server utils",
+  "main": "index.js",
+  "files": [
+    "src",
+    "index.js"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/anysome/airloy.git"
+  },
+  "keywords": [
+    "request",
+    "json",
+    "device",
+    "event",
+    "store",
+    "cache",
+    "auth"
+  ],
+  "author": "Layman <anysome@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/anysome/airloy/issues"
+  },
+  "homepage": "https://github.com/anysome/airloy#readme"
+}
