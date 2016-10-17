@@ -1,27 +1,31 @@
 /**
- * Created by Layman <anysome@gmail.com> (http://github.com/anysome) on 16/6/2.
+ * Created by Layman(http://github.com/anysome) on 16/2/20.
  */
 
 
 export default class Net {
 
   constructor(args) {
-    this._server = args.server;
+    this._server = 'http://localhost/';
     this._auth = args.auth;
     this._event = args.event;
   }
 
   config(args) {
-    args.server && (this._server = args.server);
+    let server = this._server;
+    if ( args.server ) {
+      server = (args.https ? 'https://' : 'http://') + args.server + '/';
+    }
+    this._server = server;
     args.auth && (this._auth = args.auth);
     args.event && (this._event = args.event);
   }
 
   _fullUrl(url) {
-    if (url.substr(0, 7) !== 'http://') {
-      return this._server + url;
-    } else {
+    if (url.substr(0, 4) === 'http') {
       return url;
+    } else {
+      return this._server + url;
     }
   }
 
@@ -44,7 +48,7 @@ export default class Net {
   async _responseHandle(response) {
     switch (response.status) {
       case 201:
-        this._auth.update(response.headers.get('Session'), response.headers.get('Address'));
+        this._auth.update(response.headers.get('X-Airloy-Token'), response.headers.get('X-Airloy-Ip'));
       case 200:
         return await response.json();
       case 400:
@@ -82,13 +86,14 @@ export default class Net {
         method: 'GET',
         headers: new Headers({
           Accept: 'application/json;charset=UTF-8'
-        }),
+        })
       });
+      //request.headers.set('Host', this._host);
       this._auth.authRequest(request);
       let response = await fetch(request);
       return await this._responseHandle(response);
     } catch (e) {
-      console.warn('parsing failed', JSON.stringify(e));
+      console.warn('http result parsing failed', JSON.stringify(e));
       return {
         success: false,
         message: e.message,
@@ -108,11 +113,12 @@ export default class Net {
         }),
         body: JSON.stringify(data)
       });
+      //request.headers.set('Host', this._host);
       this._auth.authRequest(request);
       let response = await fetch(request);
       return await this._responseHandle(response);
     } catch (e) {
-      console.warn('parsing failed', JSON.stringify(e));
+      console.warn('http result parsing failed', JSON.stringify(e));
       return {
         success: false,
         message: e.message,

@@ -1,17 +1,27 @@
 /**
- * Created by Layman <anysome@gmail.com> (http://github.com/anysome) on 16/6/2.
+ * Created by Layman(http://github.com/anysome) on 16/2/20.
  */
-
-import DeviceInfo from 'react-native-device-info';
+import {Platform, AsyncStorage} from 'react-native';
+import uuid from 'uuid';
 
 export default class Device {
-    static os = DeviceInfo.getSystemName();
-    static device_name = DeviceInfo.getDeviceName();
-    static device_id = DeviceInfo.getUniqueID();
-    static version = DeviceInfo.getVersion();
-    static locale = DeviceInfo.getDeviceLocale();
 
-    static getIdentifier() {
-        return Device.os + '^' + Device.device_name + '^' + Device.device_id;
+  constructor(args) {
+    this._device_id = null;
+    this._init();
+  }
+
+  async _init() {
+    let deviceId = await await AsyncStorage.getItem('airloy.device.id');
+    if (deviceId) {
+      this._device_id = deviceId;
+    } else {
+      this._device_id = Platform.OS + '^react-native^' + uuid.v1();
+      AsyncStorage.setItem('airloy.device.id', this._device_id);
     }
+  }
+
+  getIdentifier() {
+    return this._device_id;
+  }
 }

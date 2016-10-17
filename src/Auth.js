@@ -1,27 +1,26 @@
 /**
- * Created by Layman <anysome@gmail.com> (http://github.com/anysome) on 16/6/2.
+ * Created by Layman(http://github.com/anysome) on 16/2/20.
  */
+'use strict';
 
 export default class Auth {
 
   constructor(args) {
-    //if (new.target === Auth) {
-    //    throw new Error('Cannot instantiate an abstract class')
-    //}
-    this._client = args.client
-    this._event = args.event
-    this._passport = '11111111-1111-1111-1111-111111111111'
-    this._session = '00000000-1111-1111-1111-111111111111'
-    this._address = '127.0.0.1'
-    this._logined = false
-    this.user = {}
+    this._client = args.client;
+    this._host = args.host;
+    this._event = args.event;
+    this._passport = '11111111-1111-1111-1111-111111111111';
+    this._session = '00000000-1111-1111-1111-111111111111';
+    this._address = '127.0.0.1';
+    this._logined = false;
+    this.user = {};
   }
 
   formUser(account, password) {
     return {
       account: account,
       password: password
-    }
+    };
   }
 
   async saveUser(sUser) {
@@ -30,24 +29,26 @@ export default class Auth {
       name: sUser.name,
       email: sUser.email,
       accountType: sUser.accountType,
-      recruit: sUser.recruit
-    }
-    return this.user
+      recruit: sUser.recruit,
+      avatar: sUser.avatar
+    };
+    return this.user;
   }
 
   getUser() {
-    return this.user
+    return this.user;
   }
 
   authRequest(request) {
-    request.headers.set('Client-Key', this._client)
-    request.headers.set('Session', this._session)
+    request.headers.set('Host', this._host);
+    request.headers.set('X-Airloy-App', this._client);
+    request.headers.set('X-Airloy-Token', this._session);
   }
 
   update(session, address, passport) {
-    session && (this._session = session)
-    address && (this._address = address)
-    passport && (this._passport = passport)
+    session && (this._session = session);
+    address && (this._address = address);
+    passport && (this._passport = passport);
   }
 
   async updateUser(user) {
@@ -55,16 +56,16 @@ export default class Auth {
   }
 
   async setup() {
-    return true
+    return true;
   }
 
   logined() {
-    return this._logined
+    return this._logined;
   }
 
   logout() {
-    this.revoke()
-    this._event.emit(this._event.logoutEvent)
+    this.revoke();
+    this._event.emit(this._event.logoutEvent);
   }
 
   revoke() {

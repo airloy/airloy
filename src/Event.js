@@ -1,6 +1,7 @@
 /**
- * Created by Layman <anysome@gmail.com> (http://github.com/anysome) on 16/6/2.
+ * Created by Layman(http://github.com/anysome) on 16/2/24.
  */
+'use strict';
 
 import RCTDeviceEventEmitter from 'RCTDeviceEventEmitter';
 
