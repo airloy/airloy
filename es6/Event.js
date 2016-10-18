@@ -8,11 +8,11 @@ export default class Event {
   logoutEvent = 'airloy:logout';
 
   on(event: String, handler: Function) {
-    console.error('[Airloy] please init Event instance first.');
+    console.error('[airloy] please init Event instance first.');
   }
 
   once(event: String, handler: Function) {
-    console.error('[Airloy] please init Event instance first.');
+    console.error('[airloy] please init Event instance first.');
   }
 
   off(...events) {
@@ -22,11 +22,11 @@ export default class Event {
   }
 
   _off(event) {
-    console.error('[Airloy] please init Event instance first.');
+    console.error('[airloy] please init Event instance first.');
   }
 
   emit(event, ...data) {
-    console.error('[Airloy] please init Event instance first.');
+    console.error('[airloy] please init Event instance first.');
   }
 
 }

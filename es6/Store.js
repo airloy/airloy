@@ -5,12 +5,12 @@
 export default class Store {
 
   async getItem(key) {
-    console.error('[Airloy] please init Store instance first.');
+    console.error('[airloy] please init Store instance first.');
     return key;
   }
 
   setItem(key, value) {
-    console.error('[Airloy] please init Store instance first.');
+    console.error('[airloy] please init Store instance first.');
   }
 
 }

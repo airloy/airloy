@@ -4,5 +4,12 @@
 
 export default class Config {
 
-  // host https appKey appSecret
+  constructor() {
+    this.server = 'api.asfun.cn';
+    this.useHttps = false;
+    this.apiVersion = 'v1';
+    this.appKey = 'Delight';
+    this.appSecret = 'test';
+  }
+
 }

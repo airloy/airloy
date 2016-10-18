@@ -9,14 +9,30 @@ import Event from './Event';
 import Auth from './Auth';
 import Net from './Net';
 
-let airloy = {
-  config: new Config(),
-  device: new Device(),
-  store: new Store(),
-  event: new Event(),
-  auth: null,
-  net: null
-};
+let airloy = new class {
+
+  constructor() {
+    this.config = new Config();
+    this.device = new Device();
+    this.store = new Store();
+    this.event = new Event();
+    this.auth = null;
+    this.net = null;
+  }
+
+  configure(newConfig) {
+    newConfig.server && (this.config.server = newConfig.server);
+    this.config.useHttps = newConfig.useHttps ? true : false;
+    newConfig.apiVersion && (this.config.apiVersion = newConfig.apiVersion);
+    newConfig.appKey && (this.config.appKey = newConfig.appKey);
+    newConfig.appSecret && (this.config.appSecret = newConfig.appSecret);
+  }
+
+  use(plugin) {
+    plugin.install(this);
+  }
+
+} ();
 
 let auth = new Auth({airloy});
 let net = new Net({airloy});
@@ -25,3 +41,5 @@ airloy.auth = auth;
 airloy.net = net;
 
 export default airloy;
+
+

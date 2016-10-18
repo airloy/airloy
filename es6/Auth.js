@@ -21,9 +21,9 @@ export default class Auth {
       _loginTime = await this._airloy.store.getItem('airloy.user.login.time');
       this._passport = await this._airloy.store.getItem('airloy.user.passport');
       _auth = this._makeAuth();
-      console.debug(`[Airloy] restore auth = ${_auth}`);
+      console.debug(`[airloy] restore auth = ${_auth}`);
       let str = await this._airloy.store.getItem('airloy.user.info') || '{}';
-      console.debug(`[Airloy] restore user = ${str}`);
+      console.debug(`[airloy] restore user = ${str}`);
       this.user = JSON.parse(str);
     }
     return this._logined;
@@ -61,13 +61,14 @@ export default class Auth {
   }
 
   authRequest(request) {
+    request.headers.set('X-Airloy-Api', this._airloy.config.apiVersion);
     request.headers.set('X-Airloy-App', this._airloy.config.appKey);
     request.headers.set('X-Airloy-Auth', _auth);
     this._session && request.headers.set('X-Airloy-Token', this._session);
   }
 
   updateAuth(session, address, passport) {
-    console.debug(`[Airloy] update new session = ${session}, address = ${address}, passport = ${passport}`);
+    console.debug(`[airloy] update new session = ${session}, address = ${address}, passport = ${passport}`);
     session && (this._session = session);
     address && (this._address = address);
     passport && this._savePassport(passport);
@@ -75,7 +76,7 @@ export default class Auth {
   }
 
   revokeAuth() {
-    console.debug(`[Airloy] revoke passport = ${this._passport}`);
+    console.debug(`[airloy] revoke passport = ${this._passport}`);
     this._savePassport('');
     this._airloy.store.setItem('airloy.user.login.flag', '0');
     this._airloy.store.setItem('airloy.user.info', '{}');
@@ -100,6 +101,6 @@ export default class Auth {
   }
 
   _makeAuth() {
-    console.error('[Airloy] please init Auth instance first.');
+    console.error('[airloy] please init Auth instance first.');
   }
 }

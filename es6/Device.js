@@ -9,7 +9,7 @@ export default class Device {
   }
 
   getIdentifier() {
-    console.error('[Airloy] please init Device instance first.');
+    console.error('[airloy] please init Device instance first.');
     return this._identifier;
   }
 
