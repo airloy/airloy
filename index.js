@@ -1,13 +1,13 @@
 /**
- * Airloy v0.9.0
+ * Airloy v0.9.1
  * (c) 2016 Layman
  * @license MIT
  */
 (function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('md5'), require('base-64')) :
-  typeof define === 'function' && define.amd ? define(['md5', 'base-64'], factory) :
-  (global.Airloy = factory(global.md5,global.base64));
-}(this, (function (md5,base64) { 'use strict';
+  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('md5'), require('base-64')) :
+  typeof define === 'function' && define.amd ? define(['exports', 'md5', 'base-64'], factory) :
+  (factory((global.airloy = global.airloy || {}),global.md5,global.base64));
+}(this, (function (exports,md5,base64) { 'use strict';
 
 md5 = 'default' in md5 ? md5['default'] : md5;
 base64 = 'default' in base64 ? base64['default'] : base64;
@@ -670,7 +670,7 @@ var airloy = new (function () {
   function _class() {
     classCallCheck(this, _class);
 
-    this.version = '0.9.0';
+    this.version = '0.9.1';
     this.config = new Config();
     this.device = new Device();
     this.store = new Store();
@@ -703,6 +703,13 @@ var net = new Net({ airloy: airloy });
 airloy.auth = auth;
 airloy.net = net;
 
-return airloy;
+exports['default'] = airloy;
+exports.Device = Device;
+exports.Store = Store;
+exports.Event = Event;
+exports.Auth = Auth;
+exports.Net = Net;
+
+Object.defineProperty(exports, '__esModule', { value: true });
 
 })));
