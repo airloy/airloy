@@ -2,7 +2,7 @@
  * Created by  Layman(https://github.com/anysome) on 16/10/17.
  */
 
-let _loginTime = 0, _auth = '';
+let _auth = '';
 
 export default class Auth {
 
@@ -12,13 +12,14 @@ export default class Auth {
     this._session = '00000000-1111-1111-1111-111111111111';
     this._address = '127.0.0.1';
     this._logined = false;
+    this._loginTime = 0;
     this.user = {};
   }
 
   async setup() {
     this._logined = '1' === await this._airloy.store.getItem('airloy.user.login.flag');
     if (this._logined) {
-      _loginTime = await this._airloy.store.getItem('airloy.user.login.time');
+      this._loginTime = await this._airloy.store.getItem('airloy.user.login.time');
       this._passport = await this._airloy.store.getItem('airloy.user.passport');
       _auth = this._makeAuth();
       console.debug(`[airloy] restore auth = ${_auth}`);
@@ -30,12 +31,12 @@ export default class Auth {
   }
 
   formUser(account, password) {
-    _loginTime = new Date().getTime();
+    this._loginTime = new Date().getTime();
     return {
       account: account,
       password: password,
       device: this._airloy.device.getIdentifier(),
-      loginTime: _loginTime
+      loginTime: this._loginTime
     };
   }
 
@@ -45,7 +46,7 @@ export default class Auth {
     _auth = this._makeAuth();
     this.user = newUser;
     this._logined = true;
-    this._airloy.store.setItem('airloy.user.login.time', '' + _loginTime);
+    this._airloy.store.setItem('airloy.user.login.time', '' + this._loginTime);
     this._airloy.store.setItem('airloy.user.info', JSON.stringify(this.user));
     this._airloy.store.setItem('airloy.user.login.flag', '1');
     return this.user;

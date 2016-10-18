@@ -4,14 +4,16 @@
 
 export default class Event {
 
-  authRequiredEvent = 'airloy:login';
-  logoutEvent = 'airloy:logout';
+  constructor() {
+    this.authRequiredEvent = 'airloy:login';
+    this.logoutEvent = 'airloy:logout';
+  }
 
-  on(event: String, handler: Function) {
+  on(event, handler) {
     console.error('[airloy] please init Event instance first.');
   }
 
-  once(event: String, handler: Function) {
+  once(event, handler) {
     console.error('[airloy] please init Event instance first.');
   }
 

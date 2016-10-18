@@ -6,12 +6,13 @@ import Config from './Config';
 import Device from './Device';
 import Store from './Store';
 import Event from './Event';
-import Auth from './Auth';
+import Rc4Auth from './Rc4Auth';
 import Net from './Net';
 
 let airloy = new class {
 
   constructor() {
+    this.version = '0.9.0';
     this.config = new Config();
     this.device = new Device();
     this.store = new Store();
@@ -34,7 +35,7 @@ let airloy = new class {
 
 } ();
 
-let auth = new Auth({airloy});
+let auth = new Rc4Auth({airloy});
 let net = new Net({airloy});
 
 airloy.auth = auth;

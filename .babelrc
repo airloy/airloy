@@ -1,5 +1,4 @@
 {
-  "presets": ["es2015", "stage-2", "stage-3"],
-  "plugins": ["transform-runtime"],
+  "presets": ["es2015-rollup"],
   "comments": false
 }

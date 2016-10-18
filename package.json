@@ -1,13 +1,14 @@
 {
   "name": "airloy",
-  "version": "0.1.0",
-  "description": "Web client-server utils",
+  "version": "0.9.0",
+  "description": "Airloy client kit for application",
   "main": "index.js",
   "files": [
-    "src",
+    "es6",
     "index.js"
   ],
   "scripts": {
+    "build": "rollup -c build/rollup.config.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -28,5 +29,16 @@
   "bugs": {
     "url": "https://github.com/anysome/airloy/issues"
   },
-  "homepage": "https://github.com/anysome/airloy#readme"
+  "homepage": "https://github.com/anysome/airloy#readme",
+  "devDependencies": {
+    "babel-preset-es2015-rollup": "1.2.0",
+    "rollup-plugin-async": "1.1.0",
+    "rollup-plugin-babel": "2.6.1",
+    "rollup-plugin-buble": "0.14.0",
+    "rollup-plugin-node-resolve": "2.0.0"
+  },
+  "dependencies": {
+    "base-64": "0.1.0",
+    "md5": "2.2.1"
+  }
 }
