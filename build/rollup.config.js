@@ -16,7 +16,7 @@ module.exports = {
   entry: 'es6/index.js',
   dest: 'index.js',
   format: 'umd',
-  moduleName: 'Airloy',
+  moduleName: 'airloy',
   plugins: [babel(), async()],
   banner:
     `/**
