@@ -1,11 +1,11 @@
 {
   "name": "airloy",
-  "version": "0.9.1",
+  "version": "0.9.2",
   "description": "Airloy client kit for application",
-  "main": "index.js",
+  "main": "airloy.js",
   "files": [
     "es6",
-    "index.js"
+    "airloy.js"
   ],
   "scripts": {
     "build": "rollup -c build/rollup.config.js",

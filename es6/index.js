@@ -13,7 +13,7 @@ import Net from './Net';
 let airloy = new class {
 
   constructor() {
-    this.version = '0.9.1';
+    this.version = '0.9.2';
     this.config = new Config();
     this.device = new Device();
     this.store = new Store();

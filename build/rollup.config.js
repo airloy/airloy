@@ -14,13 +14,13 @@ fs.writeFileSync('es6/index.js', main);
 
 module.exports = {
   entry: 'es6/index.js',
-  dest: 'index.js',
+  dest: 'airloy.js',
   format: 'umd',
   moduleName: 'airloy',
   plugins: [babel(), async()],
   banner:
     `/**
- * Airloy v${version}
+ * airloy v${version}
  * (c) ${new Date().getFullYear()} Layman
  * @license MIT
  */`
