@@ -13,4 +13,8 @@ export default class Store {
     console.error('[airloy] please init Store instance first.');
   }
 
+  removeItem(key) {
+    console.error('[airloy] please init Store instance first.');
+  }
+
 }

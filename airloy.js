@@ -1,5 +1,5 @@
 /**
- * airloy v0.9.2
+ * airloy v0.9.3
  * (c) 2016 Layman
  * @license MIT
  */
@@ -297,6 +297,11 @@ var Store = function () {
   }, {
     key: 'setItem',
     value: function setItem(key, value) {
+      console.error('[airloy] please init Store instance first.');
+    }
+  }, {
+    key: 'removeItem',
+    value: function removeItem(key) {
       console.error('[airloy] please init Store instance first.');
     }
   }]);
@@ -670,7 +675,7 @@ var airloy = new (function () {
   function _class() {
     classCallCheck(this, _class);
 
-    this.version = '0.9.2';
+    this.version = '0.9.3';
     this.config = new Config();
     this.device = new Device();
     this.store = new Store();
