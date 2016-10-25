@@ -21,7 +21,7 @@ export default class Net {
         })
       });
       request.headers.set('Host', this._airloy.config.server);
-      this._auth.authRequest(request);
+      this._airloy.auth.authRequest(request);
       let response = await fetch(request);
       return await this._responseHandle(response);
     } catch (e) {
@@ -45,7 +45,7 @@ export default class Net {
         body: JSON.stringify(data)
       });
       request.headers.set('Host', this._airloy.config.server);
-      this._auth.authRequest(request);
+      this._airloy.auth.authRequest(request);
       let response = await fetch(request);
       return await this._responseHandle(response);
     } catch (e) {

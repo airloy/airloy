@@ -1,5 +1,5 @@
 /**
- * airloy v0.9.5
+ * airloy v0.9.6
  * (c) 2016 Layman
  * @license MIT
  */
@@ -567,7 +567,7 @@ var Net = function () {
           })
         });
         request.headers.set('Host', this._airloy.config.server);
-        this._auth.authRequest(request);
+        this._airloy.auth.authRequest(request);
         var response = yield fetch(request);
         return yield this._responseHandle(response);
       } catch (e) {
@@ -592,7 +592,7 @@ var Net = function () {
           body: JSON.stringify(data)
         });
         request.headers.set('Host', this._airloy.config.server);
-        this._auth.authRequest(request);
+        this._airloy.auth.authRequest(request);
         var response = yield fetch(request);
         return yield this._responseHandle(response);
       } catch (e) {
@@ -675,7 +675,7 @@ var airloy = new (function () {
   function _class() {
     classCallCheck(this, _class);
 
-    this.version = '0.9.5';
+    this.version = '0.9.6';
     this.config = new Config();
     this.device = new Device();
     this.store = new Store();
