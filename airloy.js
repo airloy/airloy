@@ -1,5 +1,5 @@
 /**
- * airloy v0.9.3
+ * airloy v0.9.5
  * (c) 2016 Layman
  * @license MIT
  */
@@ -531,8 +531,8 @@ var Rc4Auth = function (_Auth) {
   createClass(Rc4Auth, [{
     key: '_makeAuth',
     value: function _makeAuth() {
-      var str = this._address + '`' + this._device.getIdentifier();
-      var key = md5(this._loginTime + this._secret);
+      var str = this._address + '`' + this._airloy.device.getIdentifier();
+      var key = md5(this._loginTime + this._airloy.config.appSecret);
       str = rc4(str, key);
       var b64 = this._passport + ':' + str;
       b64 = base64.encode(b64);
@@ -675,7 +675,7 @@ var airloy = new (function () {
   function _class() {
     classCallCheck(this, _class);
 
-    this.version = '0.9.3';
+    this.version = '0.9.5';
     this.config = new Config();
     this.device = new Device();
     this.store = new Store();
