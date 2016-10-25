@@ -33,8 +33,8 @@ function rc4(str, key) {
 export default class Rc4Auth extends Auth {
 
   _makeAuth() {
-    let str = this._address + '`' + this._device.getIdentifier();
-    let key = md5(this._loginTime + this._secret);
+    let str = this._address + '`' + this._airloy.device.getIdentifier();
+    let key = md5(this._loginTime + this._airloy.config.appSecret);
     str = rc4(str, key);
     let b64 = this._passport + ':' + str;
     b64 = base64.encode(b64);
