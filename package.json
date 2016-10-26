@@ -1,6 +1,6 @@
 {
   "name": "airloy",
-  "version": "0.9.6",
+  "version": "0.9.7",
   "description": "Airloy client kit for application",
   "main": "airloy.js",
   "files": [

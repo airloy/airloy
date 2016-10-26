@@ -1,12 +1,12 @@
 /**
- * airloy v0.9.6
+ * Airloy v0.9.7
  * (c) 2016 Layman
  * @license MIT
  */
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('md5'), require('base-64')) :
   typeof define === 'function' && define.amd ? define(['exports', 'md5', 'base-64'], factory) :
-  (factory((global.airloy = global.airloy || {}),global.md5,global.base64));
+  (factory((global.Airloy = global.Airloy || {}),global.md5,global.base64));
 }(this, (function (exports,md5,base64) { 'use strict';
 
 md5 = 'default' in md5 ? md5['default'] : md5;
@@ -671,36 +671,27 @@ var Net = function () {
   return Net;
 }();
 
-var airloy = new (function () {
-  function _class() {
-    classCallCheck(this, _class);
+var airloy = {
+  version: '0.9.7',
+  config: new Config(),
+  device: new Device(),
+  store: new Store(),
+  event: new Event(),
+  auth: null,
+  net: null
+};
 
-    this.version = '0.9.6';
-    this.config = new Config();
-    this.device = new Device();
-    this.store = new Store();
-    this.event = new Event();
-    this.auth = null;
-    this.net = null;
-  }
+function configure(newConfig) {
+  newConfig.server && (airloy.config.server = newConfig.server);
+  airloy.config.useHttps = newConfig.useHttps ? true : false;
+  newConfig.apiVersion && (airloy.config.apiVersion = newConfig.apiVersion);
+  newConfig.appKey && (airloy.config.appKey = newConfig.appKey);
+  newConfig.appSecret && (airloy.config.appSecret = newConfig.appSecret);
+}
 
-  createClass(_class, [{
-    key: 'configure',
-    value: function configure(newConfig) {
-      newConfig.server && (this.config.server = newConfig.server);
-      this.config.useHttps = newConfig.useHttps ? true : false;
-      newConfig.apiVersion && (this.config.apiVersion = newConfig.apiVersion);
-      newConfig.appKey && (this.config.appKey = newConfig.appKey);
-      newConfig.appSecret && (this.config.appSecret = newConfig.appSecret);
-    }
-  }, {
-    key: 'use',
-    value: function use(plugin) {
-      plugin.install(this);
-    }
-  }]);
-  return _class;
-}())();
+function use(plugin) {
+  plugin.install(airloy);
+}
 
 var auth = new Rc4Auth({ airloy: airloy });
 var net = new Net({ airloy: airloy });
@@ -714,6 +705,8 @@ exports.Store = Store;
 exports.Event = Event;
 exports.Auth = Auth;
 exports.Net = Net;
+exports.configure = configure;
+exports.use = use;
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
