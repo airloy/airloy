@@ -8,12 +8,12 @@ import async from 'rollup-plugin-async';
 
 const version = process.env.VERSION || require('../package.json').version;
 const main = fs
-  .readFileSync('es6/index.js', 'utf-8')
+  .readFileSync('src/index.js', 'utf-8')
   .replace(/version: '[\d\.]+'/, "version: '" + version + "'");
-fs.writeFileSync('es6/index.js', main);
+fs.writeFileSync('src/index.js', main);
 
 module.exports = {
-  entry: 'es6/index.js',
+  entry: 'src/index.js',
   dest: 'airloy.js',
   format: 'umd',
   moduleName: 'Airloy',

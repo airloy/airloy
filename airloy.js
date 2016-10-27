@@ -1,5 +1,5 @@
 /**
- * Airloy v0.9.7
+ * Airloy v0.9.8
  * (c) 2016 Layman
  * @license MIT
  */
@@ -543,7 +543,7 @@ var Rc4Auth = function (_Auth) {
 }(Auth);
 
 function assert(condition, msg) {
-  if (!condition) throw new Error('[airloy] ' + msg);
+  if (!condition) throw new Error("[airloy] " + msg);
 }
 
 var Net = function () {
@@ -672,7 +672,7 @@ var Net = function () {
 }();
 
 var airloy = {
-  version: '0.9.7',
+  version: '0.9.8',
   config: new Config(),
   device: new Device(),
   store: new Store(),
