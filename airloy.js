@@ -1,5 +1,5 @@
 /**
- * Airloy v0.9.8
+ * Airloy v0.9.9
  * (c) 2016 Layman
  * @license MIT
  */
@@ -543,7 +543,7 @@ var Rc4Auth = function (_Auth) {
 }(Auth);
 
 function assert(condition, msg) {
-  if (!condition) throw new Error("[airloy] " + msg);
+  if (!condition) throw new Error('[airloy] ' + msg);
 }
 
 var Net = function () {
@@ -653,6 +653,12 @@ var Net = function () {
             message: "error.request.auth",
             info: response.status
           };
+        case 404:
+          return {
+            success: false,
+            message: "error.data.nofound",
+            info: response.status
+          };
         case 0:
           return {
             success: false,
@@ -672,7 +678,7 @@ var Net = function () {
 }();
 
 var airloy = {
-  version: '0.9.8',
+  version: '0.9.9',
   config: new Config(),
   device: new Device(),
   store: new Store(),

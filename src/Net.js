@@ -103,6 +103,12 @@ export default class Net {
           message: "error.request.auth",
           info: response.status
         };
+      case 404:
+        return {
+          success: false,
+          message: "error.data.nofound",
+          info: response.status
+        };
       case 0:
         return {
           success: false,
